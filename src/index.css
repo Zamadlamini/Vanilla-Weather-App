@@ -5,21 +5,20 @@ body {
     margin: 0;
     justify-content: center;
     align-items: center;
-    min-height: 100hv;
 }
-.container {
+.Vanilla-weather {
     background-color: white;
-    max-width: 600px;
+    max-width: 100%;
+    width: 600px;
     margin: 0 auto;
     padding: 30px;
     border-radius: 10px;
+    min-height: 400px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 #search-form {
     margin-top: 20px;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 #search-form input {
     width: 70%;
@@ -44,7 +43,7 @@ body {
     margin: 20px 0;
 }
 .weather-info h1 {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -54,9 +53,10 @@ body {
     margin: 5px 0;
 }
 #temperature {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #6a0dad;
+    
 }
 .forecast-container {
     display: flex;
@@ -65,15 +65,14 @@ body {
 }
 
 .forecast {
-    font-size: 14px;
+    font-size: 20px;
     color: #444;
-    text-align: center;
 }
 
-footer {
-    font-size: 12px;
+.footer-input {
+    font-size: 18px;
     color: #888;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }
 
