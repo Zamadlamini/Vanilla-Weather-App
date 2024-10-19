@@ -19,12 +19,12 @@
     <div class="condition-temperature">
         <div class="details">
     <p id="day">Tuesday 23:31, light rain</p>
-    <p id="cindition">Humidity: <span class="bold">65%</span>, Wind: <span class="bold">2.68km/h</span></p>
+    <p id="condition">Humidity: <span class="bold">65%</span>, Wind: <span class="bold">2.68km/h</span></p>
     </div>
-    <p id="temperature"><span>🌥️19</span><span class="celcius">°C</span></p>
+    <p id="temperature"><span class="icon">🌥️</span><span>19</span><span class="celcius">°C</span></p>
     </div>
 
-<div class="forecast-container">
+<div class="forecast-container" id="forecast">
     <div class="forecast">🌥️Tue <span>15°</span><span>9°</span></div>
     <div class="forecast">🌧️Wed <span>16°</span> <span>7°</span></div>
     <div class="forecast">🌩️Thu <span>10°</span><span>5°</span></div>
@@ -36,7 +36,9 @@
      <a href="#">GitHub</a> and also Hosted on
      <a href="#">Netlify</a>.
 </footer>
+    </div>
 </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="src/index.js"></script>
 </body>
 </html>
