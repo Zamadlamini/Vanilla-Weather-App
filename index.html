@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="Vanilla-weather">
-    <div class="container">
 <header>
         <form id="search-form">
         <input type="text" id="search" placeholder="Enter a city...." required>
@@ -17,10 +16,14 @@
 </header>
     <div class="weather-info">
     <h1 id="city">Sydney</h1>
+    <div class="condition-temperature">
+        <div class="details">
     <p id="day">Tuesday 23:31, light rain</p>
-    <p id="condition">Humidity:65%,Wind:2.68km/h</p>
-    <p id="temperature"><span>🌥️19</span><span>°C</span></p>
+    <p id="cindition">Humidity: <span class="bold">65%</span>, Wind: <span class="bold">2.68km/h</span></p>
     </div>
+    <p id="temperature"><span>🌥️19</span><span class="celcius">°C</span></p>
+    </div>
+
 <div class="forecast-container">
     <div class="forecast">🌥️Tue <span>15°</span><span>9°</span></div>
     <div class="forecast">🌧️Wed <span>16°</span> <span>7°</span></div>
