@@ -1,5 +1,6 @@
 const apiKey = '2b4f361c00d470023eb54d2498b1b90d';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
+const forecastApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 
 function searchCity(city) {
     let url = `${apiUrl}${city}&units=metric&appid=${apiKey}`;
@@ -7,7 +8,7 @@ function searchCity(city) {
     axios.get(url)
         .then(response => {
             displayWeather(response.data);
-            displayForecast(city); // Added call to display the forecast
+            displayForecast(city); 
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
@@ -24,12 +25,20 @@ function displayWeather(data) {
     const humidity = data.main.humidity;
 
     document.getElementById('city').innerHTML = city;
-    document.getElementById('temperature').innerHTML = `${temperature}°C`;
+    document.getElementById('temperature').innerHTML = `<span class="emoji">${getWeatherEmoji(icon)}</span>${temperature}°C`;
     document.getElementById('condition').innerHTML = `Humidity: ${humidity}%, Wind: ${windSpeed} km/h`;
-    document.getElementById('day').innerHTML = `${description}`;
-    
-    // Set the weather icon (not used here as the icon is in the temperature span)
-    // document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${icon}.png`;
+    document.getElementById('day').innerHTML = `${new Date().toLocaleString('en-US', { weekday: 'long' })}, ${description}`;
+}
+
+function getWeatherEmoji(icon) {
+    const weatherEmojis = {
+        '01d': '☀️', '01n': '🌙', '02d': '🌤️', '02n': '🌑',
+        '03d': '☁️', '03n': '☁️', '04d': '☁️', '04n': '☁️',
+        '09d': '🌧️', '09n': '🌧️', '10d': '🌦️', '10n': '🌧️',
+        '11d': '🌩️', '11n': '🌩️', '13d': '❄️', '13n': '❄️',
+        '50d': '🌫️', '50n': '🌫️'
+    };
+    return weatherEmojis[icon] || '🌥️';
 }
 
 document.getElementById('search-form').addEventListener('submit', function (e) {
@@ -38,8 +47,6 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
     searchCity(city);
 });
 
-const forecastApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
-
 function displayForecast(city) {
     let url = `${forecastApiUrl}${city}&units=metric&appid=${apiKey}`;
     
@@ -47,24 +54,40 @@ function displayForecast(city) {
         .then(response => {
             let forecastElement = document.querySelector("#forecast");
             let forecastHtml = "";
-            
-            response.data.list.slice(0, 5).forEach(function (day) {
-                let dayName = new Date(day.dt * 1000).toLocaleString('en-US', { weekday: 'short' });
-                let icon = day.weather[0].icon;
-                let maxTemp = Math.round(day.main.temp_max);
-                let minTemp = Math.round(day.main.temp_min);
+            let forecastData = {};
+
+            // Organize forecast data by day
+            response.data.list.forEach(function (entry) {
+                let date = new Date(entry.dt * 1000);
+                let day = date.toLocaleString('en-US', { weekday: 'short' });
                 
+                if (!forecastData[day]) {
+                    forecastData[day] = { maxTemp: -Infinity, minTemp: Infinity, icon: entry.weather[0].icon };
+                }
+
+                let tempMax = Math.round(entry.main.temp_max);
+                let tempMin = Math.round(entry.main.temp_min);
+                
+                // Update max and min temperatures for the day
+                if (tempMax > forecastData[day].maxTemp) {
+                    forecastData[day].maxTemp = tempMax;
+                }
+                if (tempMin < forecastData[day].minTemp) {
+                    forecastData[day].minTemp = tempMin;
+                }
+            });
+
+            // Generate the forecast HTML
+            for (let day in forecastData) {
                 forecastHtml += `
                     <div class="forecast">
-                        <div class="weather-forecast-day">${dayName}</div>
-                        <img src="http://openweathermap.org/img/wn/${icon}.png" alt="" class="weather-forecast-icon">
-                        <div class="weather-forecast-temperatures">
-                            <strong>${maxTemp}°</strong> <span>${minTemp}°</span>
-                        </div>
+                        <span class="emoji">${getWeatherEmoji(forecastData[day].icon)}</span>${day}
+                        <span>${forecastData[day].maxTemp}°</span>
+                        <span>${forecastData[day].minTemp}°</span>
                     </div>
                 `;
-            });
-            
+            }
+
             forecastElement.innerHTML = forecastHtml;
         })
         .catch(error => {

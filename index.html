@@ -1,4 +1,4 @@
-<html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,37 +8,36 @@
 </head>
 <body>
     <div class="Vanilla-weather">
-<header>
-        <form id="search-form">
-        <input type="text" id="search" placeholder="Enter a city...." required>
-        <button type="submit" id="search-form-button">Search</button>
-    </form>
-</header>
-    <div class="weather-info">
-    <h1 id="city">Sydney</h1>
-    <div class="condition-temperature">
-        <div class="details">
-    <p id="day">Tuesday 23:31, light rain</p>
-    <p id="condition">Humidity: <span class="bold">65%</span>, Wind: <span class="bold">2.68km/h</span></p>
+        <header>
+            <form id="search-form">
+                <input type="text" id="search" placeholder="Enter a city...." required>
+                <button type="submit" id="search-form-button">Search</button>
+            </form>
+        </header>
+        <div class="weather-info">
+            <h1 id="city">Sydney</h1>
+            <div class="condition-temperature">
+                <div class="details">
+                    <p id="day">Tuesday 23:31, light rain</p>
+                    <p id="condition">Humidity: <span class="bold">65%</span>, Wind: <span class="bold">2.68km/h</span></p>
+                </div>
+                <p id="temperature"><span class="emoji">🌥️</span><span>19</span><span class="celcius">°C</span></p>
+            </div>
+            <div class="forecast-container" id="forecast">
+                <div class="forecast">🌥️Tue <span>15°</span><span>9°</span></div>
+                <div class="forecast">🌧️Wed <span>16°</span> <span>7°</span></div>
+                <div class="forecast">🌩️Thu <span>10°</span><span>5°</span></div>
+                <div class="forecast">⛈️Fri <span>9°</span><span>7°</span></div>
+                <div class="forecast">❄️Sat <span> 5°</span><span>3°</span></div>
+            </div>
+            <footer class="footer-input">
+                This Project is coded with❤️by Zama Dlamini is on
+                <a href="#">GitHub</a> and also Hosted on
+                <a href="#">Netlify</a>.
+            </footer>
+        </div>
     </div>
-    <p id="temperature"><span class="icon">🌥️</span><span>19</span><span class="celcius">°C</span></p>
-    </div>
-
-<div class="forecast-container" id="forecast">
-    <div class="forecast">🌥️Tue <span>15°</span><span>9°</span></div>
-    <div class="forecast">🌧️Wed <span>16°</span> <span>7°</span></div>
-    <div class="forecast">🌩️Thu <span>10°</span><span>5°</span></div>
-    <div class="forecast">⛈️Fri <span>9°</span><span>7°</span></div>
-    <div class="forecast">❄️Sat <span> 5°</span><span>3°</span></div>
-</div>
-<footer class="footer-input">
-    This Project is coded with❤️by Zama Dlamini is on
-     <a href="#">GitHub</a> and also Hosted on
-     <a href="#">Netlify</a>.
-</footer>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="src/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script src="src/index.js"></script> 
 </body>
 </html>
